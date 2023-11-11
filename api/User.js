@@ -4,9 +4,15 @@ const User =  require('./../models/User')
 const bcrypt = require('bcrypt')
 
 router.post('/signup', (req, res)=>{
-	let {name, email, password, dateOfBirth} = req.body;
 
 	console.log("req.body: ", req.body)
+
+
+	let {name, email, password, dateOfBirth} = req.body;
+	console.log("req.body: ", name)
+	console.log("req.body: ", email)
+	console.log("req.body: ", password)
+	console.log("req.body: ", dateOfBirth)
 
 	name = name.trim();
 	email = email.trim();
