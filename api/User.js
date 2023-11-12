@@ -142,4 +142,39 @@ router.post("/signin", (req, res) => {
 	}
 });
 
+router.post("/user-info", (req, res) => {
+	let { email } = req.body;
+	email = email.trim();
+
+	if (email == "" ) {
+		res.json({
+			status: "FAILED",
+			message: "Empty credentials supplied",
+		});
+	} else {
+		User.find({ email })
+		.then((data) => {
+			if (data) {
+				res.json({
+					status: "SUCCESS",
+					message: "User data retrieve successful",
+					data: data,
+				});
+
+			} else {
+				res.json({
+					status: "FAILED",
+					message: "Error getting user data",
+				});
+			}
+		})
+		.catch((err) => {
+			res.json({
+				status: "FAILED",
+				message: "An error occurred while checking for user data",
+			});
+		});
+	}
+});
+
 module.exports = router;
