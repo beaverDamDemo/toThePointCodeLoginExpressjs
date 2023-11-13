@@ -177,4 +177,77 @@ router.post("/user-info", (req, res) => {
 	}
 });
 
+router.post("/save-user-result", (req, res) => {
+	let { hasUserWon, email } = req.body;
+	email = email.trim();
+	User.find({ email })
+	.then((documents) => {
+		if(hasUserWon) {
+			if(documents[0].matchesWon) {
+				const tmpWon = parseInt(documents[0].matchesWon) + parseInt(1);
+				User.updateOne({ email: email }, { 
+					matchesWon: tmpWon
+				})
+				.then(() => {
+					console.log('user updated')
+					res.json({
+						status: "SUCCESS",
+						message: "User matches lost or won update successful",
+						data: data,
+					});
+				})
+				.catch(e=>{}) 
+			} else {
+				User.updateOne({ email: email }, { 
+					matchesWon: 1
+				})
+				.then(() => {
+					console.log('user updated')
+					res.json({
+						status: "SUCCESS",
+						message: "User matches lost or won update successful",
+						data: data,
+					});
+				})
+				.catch(e=>{}) 
+			}
+		} else {
+			if(documents[0].matchesLost) {
+				const tmpLost = parseInt(documents[0].matchesLost) + parseInt(1);
+				User.updateOne({ email: email }, { 
+					matchesLost: tmpLost
+				})
+				.then(() => {
+					console.log('user updated')
+					res.json({
+						status: "SUCCESS",
+						message: "User matches lost or won update successful",
+						data: data,
+					});
+				})
+				.catch(e=>{}) 
+			} else {
+				User.updateOne({ email: email }, { 
+					matchesLost: 1
+				})
+				.then(() => {
+					console.log('user updated')
+					res.json({
+						status: "SUCCESS",
+						message: "User matches lost or won update successful",
+						data: data,
+					});
+				})
+				.catch(e=>{}) 
+			}
+		}
+	})
+	.catch((err) => {
+		res.json({
+			status: "FAILED",
+			message: "An error occurred while saving user result",
+		});
+	});
+});
 module.exports = router;
+

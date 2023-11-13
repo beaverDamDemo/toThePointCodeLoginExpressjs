@@ -6,7 +6,7 @@ const CarSchema = new Schema({
 	zyl: String,
 	kw: String,
 	ccm: String,
-	kmh: String,
+	kmh: Number,
 	firstChoice: Number,
 	secondChoice: Number,
 	duelsWon: Number,
