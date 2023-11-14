@@ -7,7 +7,7 @@ const CarRouter = require('./api/Car');
 const bodyParser = require('express').json;
 const cors = require('cors')
 const corsOptions = {
-	origin: "https://beaverdamdemo.github.io/piatnik-turbos",
+	origin: "https://tothepointcodeloginexpressjs.onrender.com",
 	optionsSuccessStatus: 200
 }
 // app.use(bodyParser())
