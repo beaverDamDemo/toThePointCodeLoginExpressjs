@@ -7,25 +7,6 @@ router.post("/save-game-results", (req, res) => {
 	let { data } = req.body;
 
 	for(let i=0; i<data.cars.length; i++) {
-		// const newCar = new Car({
-		// 	id: data.cars[i].id,
-		// 	name: data.cars[i].name,
-		// 	zyl: data.cars[i].zyl,
-		// 	kw: data.cars[i].kw,
-		// 	ccm: data.cars[i].ccm,
-		// 	kmh: data.cars[i].kmh,
-		// 	firstChoice: data.cars[i].firstChoice,
-		// 	secondChoice: data.cars[i].secondChoice,
-		// 	duelsWon: data.cars[i].duelsWon,
-		// 	duelsLost: data.cars[i].duelsLost,
-		// 	duelsTie: data.cars[i].duelsTie,
-		// 	cardsPack: data.cardsPack
-		// });	
-
-		// newCar.save()
-		// .then(() => console.log('Car saved to database'))
-		// .catch((err) => console.error(err));
-
 		Car.find({ name: data.cars[i].name, cardsPack: data.cardsPack })
 		.then((documents) => {
 			const tmpLost = parseInt(documents[0].duelsLost) + parseInt(data.cars[i].duelsLost);
@@ -37,7 +18,7 @@ router.post("/save-game-results", (req, res) => {
 				duelsWon: tmpWon
 			})
 			.then(() => console.log('Card updated'))
-			// .catch((err) => console.error(err));
+			.catch((err) => console.error(err));
 		})
 		.catch((err) => {
 			const newCar = new Car({
@@ -50,11 +31,42 @@ router.post("/save-game-results", (req, res) => {
 
 			newCar.save()
 			.then(() => console.log('Car saved to database'))
-			// .catch((err) => console.error(err));
+			.catch((err) => console.error(err));
 
 			console.error("Error getting document ", err);	
 		})
 	}
+});
+
+router.get("/cards-stats", (req, res) => {
+	let { data } = req.body;
+	Car.find()
+	.then((data) => {
+		console.log("data: ", data);
+		res.json({
+			status: "SUCCESS",
+			message: "Cards stats retrieve successful",
+			data: data,
+		});
+	})
+	.catch((err) => {
+		console.error("Error getting document ", err);	
+	})
+});
+
+router.get("/empty-cards-stats", (req, res) => {
+	Car.deleteMany({})
+	.then((data) => {
+		console.log("data: ", data);
+		res.json({
+			status: "SUCCESS",
+			message: "Cards stats empty successful",
+			data: data,
+		});
+	})
+	.catch((err) => {
+		console.error("Error getting document ", err);	
+	})
 });
 
 module.exports = router;
