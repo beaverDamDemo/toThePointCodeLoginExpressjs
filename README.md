@@ -17,3 +17,9 @@ it gets paused after a long period of inactivity
 
 directyl from the browser:
 http://localhost:3000/car/cards-stats
+or
+http://localhost:3000/sample
+
+# deploy
+
+how to deploy?
