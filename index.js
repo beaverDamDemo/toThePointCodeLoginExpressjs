@@ -7,7 +7,7 @@ const CarRouter = require('./api/Car');
 const bodyParser = require('express').json;
 const cors = require('cors')
 const corsOptions = {
-	origin: 'http://localhost:3000',
+	origin: '*',
 	optionsSuccessStatus: 200
 }
 app.use(cors());
