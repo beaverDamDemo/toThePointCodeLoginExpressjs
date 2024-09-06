@@ -12,3 +12,8 @@ login as zdenegti@gmail.com : - one of your passwords -
 use the Cluster0 database
 if it is paused click on Resume
 it gets paused after a long period of inactivity
+
+## sample call
+
+directyl from the browser:
+http://localhost:3000/car/cards-stats
