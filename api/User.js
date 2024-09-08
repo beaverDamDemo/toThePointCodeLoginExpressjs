@@ -243,6 +243,7 @@ router.post("/save-user-result", (req, res) => {
 		}
 	})
 	.catch((err) => {
+		console.error(err);
 		res.json({
 			status: "FAILED",
 			message: "An error occurred while saving user result",

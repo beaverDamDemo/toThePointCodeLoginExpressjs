@@ -22,4 +22,5 @@ http://localhost:3000/sample
 
 # deploy
 
-how to deploy?
+deploy looks like is made automatically on git push. 
+Locally currenlty is throwing CORS error

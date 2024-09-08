@@ -1,6 +1,6 @@
 require('./config/db')
 const express = require('express')
-const app = require('express')();
+const app = express();
 const port = 3000;
 const UserRouter = require('./api/User');
 const CarRouter = require('./api/Car');
