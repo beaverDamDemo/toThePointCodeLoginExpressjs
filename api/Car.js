@@ -46,7 +46,6 @@ router.post('/save-game-results', (req, res) => {
 });
 
 router.get('/cards-stats', (req, res) => {
-  let { data } = req.body;
   Car.find()
     .then((data) => {
       res.json({

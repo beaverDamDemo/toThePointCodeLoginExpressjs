@@ -8,8 +8,7 @@ router.post("/signup", (req, res) => {
 	name = name.trim();
 	email = email.trim();
 	password = password.trim();
-	dateOfBirth = dateOfBirth.trim();
-	if (name == "" || email == "" || password == "" || dateOfBirth == "") {
+	if (name == "" || email == "" || password == "") {
 		res.json({
 			status: "FAILED",
 			message: "Empty input fields!",
@@ -23,11 +22,6 @@ router.post("/signup", (req, res) => {
 		res.json({
 			status: "FAILED",
 			message: "Invalid email entered",
-		});
-	} else if (!new Date(dateOfBirth).getTime()) {
-		res.json({
-			status: "FAILED",
-			message: "Invalid date of birth entered",
 		});
 	} else if (password.length < 2) {
 		res.json({
@@ -45,7 +39,6 @@ router.post("/signup", (req, res) => {
 				});
 			} else {
 				console.log("creating new user");
-          // creating new user
 				const saltRounds = 10;
 				bcrypt
 				.hash(password, saltRounds)
@@ -54,7 +47,6 @@ router.post("/signup", (req, res) => {
 						name,
 						email,
 						password: hashedPassword,
-						dateOfBirth,
 					});
 					newUser
 					.save()
